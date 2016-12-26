@@ -1,0 +1,26 @@
+{
+  "name": "react-native-pixel-color",
+  "version": "0.0.1",
+  "description": "Returns the pixel color from a graphic at a given corrdinate.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leblaaanc/react-native-pixel-color.git"
+  },
+  "keywords": [
+    "react-native",
+    "react",
+    "android",
+    "ios",
+    "images",
+    "image",
+    "image-resizer",
+    "scaling",
+    "scale",
+    "resize"
+  ],
+  "peerDependencies": {
+    "react-native": ">=v0.14.2"
+  },
+  "author": "Chris LeBlanc <chris@leblaaanc.com> (https://leblaaanc.com)",
+  "license": "MIT"
+}
