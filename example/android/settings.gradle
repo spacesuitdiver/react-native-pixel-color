@@ -1,5 +1,0 @@
-rootProject.name = 'ResizerExample'
-
-include ':app'
-include ':react-native-image-resizer'
-project(':react-native-image-resizer').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-image-resizer/android')

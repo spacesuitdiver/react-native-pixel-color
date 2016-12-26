@@ -18,8 +18,12 @@ RCT_EXPORT_METHOD(getPixelColor:(NSString *)path
             if ([path hasPrefix:@"data:"] || [path hasPrefix:@"file:"]) {
                 NSURL *imageUrl = [[NSURL alloc] initWithString:path];
                 image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
+                UIColor *color = pixelColorInImage(image, x, y);
+                callback(@[color]);
             } else {
                 image = [[UIImage alloc] initWithContentsOfFile:path];
+                UIColor *color = pixelColorInImage(image, x, y);
+                callback(@[color]);
             }
             if (image == nil) {
                 callback(@[@"Can't retrieve the file from the path.", @""]);

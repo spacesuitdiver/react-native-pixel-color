@@ -1,0 +1,3 @@
+rootProject.name = 'ColorPicker'
+
+include ':app'
