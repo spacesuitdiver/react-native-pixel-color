@@ -63,8 +63,7 @@
 				5D72D2EB1C16249000E22EC1 /* RNPixelColor.h */,
 				5D72D2ED1C16249000E22EC1 /* RNPixelColor.m */,
 			);
-			name = RNPixelColor;
-			path = PNPixelColor;
+			path = RNPixelColor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
