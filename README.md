@@ -1,6 +1,6 @@
 # React Pixel Color
 
-A React Native module that can create scaled versions of local images (also supports the assets library on iOS).
+Returns the pixel color from a graphic at a given corrdinate.
 
 ## Setup
 
@@ -26,10 +26,10 @@ Note: on latest versions of React Native, you may have an error during the Gradl
 ## Usage example
 
 ```javascript
-import ImageResizer from 'react-native-pixel-color';
+import PixelColor from 'react-native-pixel-color';
 
-ImageResizer.getPixelColor(imageUriOrData, x, y).then((color) => {
-  // color
+PixelColor.getHex(imageUriOrData, x, y).then((color) => {
+  // #000000
 }).catch((err) => {
   // Oops, something went wrong. Check that the filename is correct and
   // inspect err to get more details.
@@ -42,12 +42,11 @@ Examples are found in the [the `examples` folder](https://github.com/bamlab/reac
 
 ## API
 
-### `promise getPixelColor(path, x, y)`
+### `promise getHex(path, coords)`
 
 The promise resolves with a string containing the uri of the new file.
 
 Option | Description
 ------ | -----------
 path | Path of image file, or a base64 encoded image string prefixed with 'data:image/imagetype' where `imagetype` is jpeg or png.
-x | x coordinate
-y | y cordinate
+coords | { x: int, y: int }

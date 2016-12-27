@@ -1,3 +1,5 @@
 rootProject.name = 'ColorPicker'
+include ':react-native-pixel-color'
+project(':react-native-pixel-color').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-pixel-color/android')
 
 include ':app'
