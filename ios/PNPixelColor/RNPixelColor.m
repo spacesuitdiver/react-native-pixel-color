@@ -36,7 +36,6 @@ RCT_EXPORT_METHOD(getHex:(NSString *)path
 }
 
 UIColor * pixelColorInImage( UIImage* image, int x, int y ) {
-    int foo = image.size.width;
     CFDataRef pixelData = CGDataProviderCopyData(CGImageGetDataProvider(image.CGImage));
     const UInt8* data = CFDataGetBytePtr(pixelData);
     
