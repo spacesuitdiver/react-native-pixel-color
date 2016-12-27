@@ -52,8 +52,8 @@
     
     // Create a 1x1 pixel byte array and bitmap context to draw the pixel into.
     // Reference: http://stackoverflow.com/questions/1042830/retrieving-a-pixel-alpha-value-for-a-uiimage
-    NSInteger pointX = trunc(point.x);
-    NSInteger pointY = trunc(point.y);
+    NSInteger pointX = point.x;
+    NSInteger pointY = point.y;
     CGImageRef cgImage = self.CGImage;
     NSUInteger width = self.size.width;
     NSUInteger height = self.size.height;

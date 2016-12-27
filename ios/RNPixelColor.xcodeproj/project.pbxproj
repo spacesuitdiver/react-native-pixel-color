@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5D72D2EC1C16249000E22EC1 /* RNPixelColor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5D72D2EB1C16249000E22EC1 /* RNPixelColor.h */; };
 		5D72D2EE1C16249000E22EC1 /* RNPixelColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D72D2ED1C16249000E22EC1 /* RNPixelColor.m */; };
+		806279ED1E1328DA00924BF6 /* UIImage+ColorAtPixel.m in Sources */ = {isa = PBXBuildFile; fileRef = 806279EC1E1328DA00924BF6 /* UIImage+ColorAtPixel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,8 @@
 		5D72D2E81C16249000E22EC1 /* libRNPixelColor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNPixelColor.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D72D2EB1C16249000E22EC1 /* RNPixelColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNPixelColor.h; sourceTree = "<group>"; };
 		5D72D2ED1C16249000E22EC1 /* RNPixelColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNPixelColor.m; sourceTree = "<group>"; };
+		806279EB1E1328DA00924BF6 /* UIImage+ColorAtPixel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ColorAtPixel.h"; sourceTree = "<group>"; };
+		806279EC1E1328DA00924BF6 /* UIImage+ColorAtPixel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ColorAtPixel.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +47,7 @@
 		5D72D2DF1C16249000E22EC1 = {
 			isa = PBXGroup;
 			children = (
+				806279EA1E1328DA00924BF6 /* UIImage+ColorAtPixel */,
 				5D72D2EA1C16249000E22EC1 /* RNPixelColor */,
 				5D72D2E91C16249000E22EC1 /* Products */,
 			);
@@ -64,6 +68,15 @@
 				5D72D2ED1C16249000E22EC1 /* RNPixelColor.m */,
 			);
 			path = RNPixelColor;
+			sourceTree = "<group>";
+		};
+		806279EA1E1328DA00924BF6 /* UIImage+ColorAtPixel */ = {
+			isa = PBXGroup;
+			children = (
+				806279EB1E1328DA00924BF6 /* UIImage+ColorAtPixel.h */,
+				806279EC1E1328DA00924BF6 /* UIImage+ColorAtPixel.m */,
+			);
+			path = "UIImage+ColorAtPixel";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,6 +136,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D72D2EE1C16249000E22EC1 /* RNPixelColor.m in Sources */,
+				806279ED1E1328DA00924BF6 /* UIImage+ColorAtPixel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

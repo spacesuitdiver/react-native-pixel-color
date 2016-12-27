@@ -21,11 +21,13 @@ const base64ColorWheel = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAvwAAAL8
 export default class ColorPicker extends Component {
 
   state = {
-    pixelColor: 'transparent'
+    pixelColor: 'transparent',
+    width: 1,
+    height: 1
   }
 
   animations = {
-    handlePosition: new Animated.ValueXY({ x: 50, y: 50 })
+    handlePosition: new Animated.ValueXY({ x: 0, y: 0 })
   }
 
   panResponders = {
@@ -37,7 +39,9 @@ export default class ColorPicker extends Component {
           this.animations.handlePosition.setValue({ x: 0, y: 0 });
       },
       onPanResponderMove: (e, gestureState) => {
-        PixelColor.getHex(base64ColorWheel, { x: e.nativeEvent.pageX, y: e.nativeEvent.pageY })
+        const { width, height } = this.state;
+
+        PixelColor.getHex(base64ColorWheel, { x: e.nativeEvent.pageX, y: e.nativeEvent.pageY, width, height })
         .then(pixelColor => this.setState({ pixelColor }))
         .catch(console.error);
 
@@ -48,8 +52,8 @@ export default class ColorPicker extends Component {
   }
 
   lastHandlePosition = {
-    x: 50,
-    y: 50
+    x: 0,
+    y: 0
   }
 
   componentWillMount() {
@@ -57,12 +61,20 @@ export default class ColorPicker extends Component {
     this.animations.handlePosition.y.addListener(({ value }) => this.lastHandlePosition.y = value);
   }
 
+  onLayout({ nativeEvent }) {
+    this.setState({ width: nativeEvent.layout.width, height: nativeEvent.layout.height });
+  }
+
   render() {
     const { pixelColor } = this.state;
 
     return (
       <View style={styles.container}>
-        <Image style={{ width: 765, height: 764 }} source={{uri: base64ColorWheel}}>
+        <Image 
+          style={{ height: 200, width: 200, backgroundColor: 'red', resizeMode: 'contain' }} 
+          source={{ uri: base64ColorWheel }}
+          onLayout={this.onLayout.bind(this)}
+        >
           <Animated.View 
             style={[styles.handle, { transform: this.animations.handlePosition.getTranslateTransform(), backgroundColor: pixelColor }]} 
             {...this.panResponders.handle.panHandlers}

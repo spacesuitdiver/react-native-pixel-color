@@ -3,8 +3,8 @@ import {
 } from 'react-native';
 
 export default {
-  getHex: (path, coords) => new Promise((resolve, reject) => {
-    NativeModules.RNPixelColor.getHex(path, coords, (err, color) => {
+  getHex: (path, options) => new Promise((resolve, reject) => {
+    NativeModules.RNPixelColor.getHex(path, options, (err, color) => {
       if (err) return reject(err);
 
       resolve(color);
