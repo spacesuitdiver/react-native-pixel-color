@@ -1,4 +1,4 @@
-# React Pixel Color
+# React Native Pixel Color
 
 Returns the pixel color from a graphic at a given corrdinate.
 
