@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		5D72D2EC1C16249000E22EC1 /* RNPixelColor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5D72D2EB1C16249000E22EC1 /* RNPixelColor.h */; };
 		5D72D2EE1C16249000E22EC1 /* RNPixelColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D72D2ED1C16249000E22EC1 /* RNPixelColor.m */; };
-		806279ED1E1328DA00924BF6 /* UIImage+ColorAtPixel.m in Sources */ = {isa = PBXBuildFile; fileRef = 806279EC1E1328DA00924BF6 /* UIImage+ColorAtPixel.m */; };
+		809878491E36C48500B6B95F /* RNPixelColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809878481E36C48500B6B95F /* RNPixelColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,8 +29,8 @@
 		5D72D2E81C16249000E22EC1 /* libRNPixelColor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNPixelColor.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D72D2EB1C16249000E22EC1 /* RNPixelColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNPixelColor.h; sourceTree = "<group>"; };
 		5D72D2ED1C16249000E22EC1 /* RNPixelColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNPixelColor.m; sourceTree = "<group>"; };
-		806279EB1E1328DA00924BF6 /* UIImage+ColorAtPixel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ColorAtPixel.h"; sourceTree = "<group>"; };
-		806279EC1E1328DA00924BF6 /* UIImage+ColorAtPixel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ColorAtPixel.m"; sourceTree = "<group>"; };
+		809878471E36C48500B6B95F /* RNPixelColor-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RNPixelColor-Bridging-Header.h"; sourceTree = "<group>"; };
+		809878481E36C48500B6B95F /* RNPixelColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNPixelColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,9 +47,9 @@
 		5D72D2DF1C16249000E22EC1 = {
 			isa = PBXGroup;
 			children = (
-				806279EA1E1328DA00924BF6 /* UIImage+ColorAtPixel */,
 				5D72D2EA1C16249000E22EC1 /* RNPixelColor */,
 				5D72D2E91C16249000E22EC1 /* Products */,
+				809878471E36C48500B6B95F /* RNPixelColor-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,19 +64,11 @@
 		5D72D2EA1C16249000E22EC1 /* RNPixelColor */ = {
 			isa = PBXGroup;
 			children = (
+				809878481E36C48500B6B95F /* RNPixelColor.swift */,
 				5D72D2EB1C16249000E22EC1 /* RNPixelColor.h */,
 				5D72D2ED1C16249000E22EC1 /* RNPixelColor.m */,
 			);
 			path = RNPixelColor;
-			sourceTree = "<group>";
-		};
-		806279EA1E1328DA00924BF6 /* UIImage+ColorAtPixel */ = {
-			isa = PBXGroup;
-			children = (
-				806279EB1E1328DA00924BF6 /* UIImage+ColorAtPixel.h */,
-				806279EC1E1328DA00924BF6 /* UIImage+ColorAtPixel.m */,
-			);
-			path = "UIImage+ColorAtPixel";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -110,6 +102,7 @@
 				TargetAttributes = {
 					5D72D2E71C16249000E22EC1 = {
 						CreatedOnToolsVersion = 7.1.1;
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
@@ -136,7 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D72D2EE1C16249000E22EC1 /* RNPixelColor.m in Sources */,
-				806279ED1E1328DA00924BF6 /* UIImage+ColorAtPixel.m in Sources */,
+				809878491E36C48500B6B95F /* RNPixelColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,6 +219,7 @@
 		5D72D2F21C16249000E22EC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -233,15 +227,20 @@
 					"$(SRCROOT)/../../react-native/Libraries/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "RNPixelColor-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		5D72D2F31C16249000E22EC1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -249,9 +248,12 @@
 					"$(SRCROOT)/../../react-native/Libraries/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "RNPixelColor-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
