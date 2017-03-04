@@ -101,7 +101,7 @@ public class ImageResizer {
      * Get {@link File} object for the given Android URI.<br>
      * Use content resolver to get real path if direct path doesn't return valid file.
      */
-    private static File getFileFromUri(Context context, Uri uri) {
+    public static File getFileFromUri(Context context, Uri uri) {
 
         // first try by direct path
         File file = new File(uri.getPath());
@@ -207,7 +207,7 @@ public class ImageResizer {
     /**
      * Loads the bitmap resource from the file specified in imagePath.
      */
-    private static Bitmap loadBitmapFromFile(Context context, String imagePath, int newWidth,
+    public static Bitmap loadBitmapFromFile(Context context, String imagePath, int newWidth,
                                              int newHeight) throws IOException  {
         // Decode the image bounds to find the size of the source image.
         BitmapFactory.Options options = new BitmapFactory.Options();
@@ -228,7 +228,7 @@ public class ImageResizer {
      * png: 'data:image/png;base64,iVBORw0KGgoAA...'
      * jpg: 'data:image/jpeg;base64,/9j/4AAQSkZJ...'
      */
-    private static Bitmap loadBitmapFromBase64(String imagePath) {
+    public static Bitmap loadBitmapFromBase64(String imagePath) {
         Bitmap sourceImage = null;
 
         // base64 image.  Convert to a bitmap.
