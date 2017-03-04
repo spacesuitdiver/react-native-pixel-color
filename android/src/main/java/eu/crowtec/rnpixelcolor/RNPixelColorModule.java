@@ -2,11 +2,16 @@ package eu.crowtec.rnpixelcolor;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+
+import java.io.File;
 
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.ReadableMap;
 import fr.bamlab.rnimageresizer.ImageResizer;
 
 import java.io.IOException;
@@ -26,7 +31,7 @@ class RNPixelColorModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void getHex(String path, @Nullable ReadableMap options, final Callback callback) {
+    public void getHex(String path, ReadableMap options, final Callback callback) {
         Bitmap image;
         if (path.startsWith("data:") || path.startsWith("file:")) {
             Uri imageUrl = Uri.parse(path);
@@ -53,12 +58,12 @@ class RNPixelColorModule extends ReactContextBaseJavaModule {
           float originalWidth = image.getWidth();
           float originalHeight = image.getHeight();
 
-          x = x * (originalWidth / scaledWidth);
-          y = y * (originalHeight / scaledHeight);
+          x = x * ((int)originalWidth / scaledWidth);
+          y = y * ((int)originalHeight / scaledHeight);
 
         }
 
-        int color = colorAtPixel(bitmap, x, y);
+        int color = colorAtPixel(image, x, y);
 
         callback.invoke(colorToHexString(color));
     }
@@ -68,7 +73,7 @@ class RNPixelColorModule extends ReactContextBaseJavaModule {
     }
 
     private String colorToHexString(int color) {
-        return String.format("#%06X", (0xFFFFFF & intColor));
+        return String.format("#%06X", (0xFFFFFF & color));
     }
 
 

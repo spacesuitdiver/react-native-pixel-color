@@ -27,7 +27,7 @@ import java.util.Date;
 /**
  * Provide methods to resize and rotate an image file.
  */
-class ImageResizer {
+public class ImageResizer {
 
     private final static String BASE64_PREFIX = "data:image/";
 
