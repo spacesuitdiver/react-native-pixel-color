@@ -27,7 +27,7 @@ RCT_EXPORT_METHOD(getHex:(NSString *)path
                 return;
             }
         }
- 
+
         NSInteger x = [RCTConvert NSInteger:options[@"x"]];
         NSInteger y = [RCTConvert NSInteger:options[@"y"]];
         if (options[@"width"] && options[@"height"]) {
@@ -35,17 +35,17 @@ RCT_EXPORT_METHOD(getHex:(NSString *)path
             NSInteger scaledHeight = [RCTConvert NSInteger:options[@"height"]];
             float originalWidth = image.size.width;
             float originalHeight = image.size.height;
-            
+
             x = x * (originalWidth / scaledWidth);
             y = y * (originalHeight / scaledHeight);
-            
+
         }
-        
+
         CGPoint point = CGPointMake(x, y);
-        
+
         UIColor *pixelColor = [image colorAtPixel:point];
         callback(@[[NSNull null], hexStringForColor(pixelColor)]);
-     
+
     }];
 }
 
