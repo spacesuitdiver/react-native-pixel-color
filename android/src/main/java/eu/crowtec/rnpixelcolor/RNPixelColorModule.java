@@ -34,18 +34,24 @@ class RNPixelColorModule extends ReactContextBaseJavaModule {
     public void getHex(String path, ReadableMap options, final Callback callback) {
         Bitmap image;
         if (path.startsWith("data:") || path.startsWith("file:")) {
-            Uri imageUrl = Uri.parse(path);
-            File file = ImageResizer.getFileFromUri(this.context, imageUrl);
-            BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
-            bitmapOptions.inJustDecodeBounds = true;
+
+          Uri imageUrl = Uri.parse(path);
+          File file = ImageResizer.getFileFromUri(this.context, imageUrl);
+          BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+          bitmapOptions.inJustDecodeBounds = true;
+          try {
             image = ImageResizer.loadBitmap(this.context, file.getPath(), bitmapOptions);
+          } catch(IOException e){
+            callback.invoke("Error parsing bitmap. Error: " + e.getMessage());
+            return;
+          }
         } else {
-            image = ImageResizer.loadBitmapFromBase64(path);
+          image = ImageResizer.loadBitmapFromBase64(path);
         }
 
         if (image == null) {
-            callback.invoke("Could not create image from given path.");
-            return;
+          callback.invoke("Could not create image from given path.");
+          return;
         }
 
         int x = options.getInt("x");
