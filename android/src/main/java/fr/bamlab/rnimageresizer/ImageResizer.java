@@ -189,7 +189,7 @@ public class ImageResizer {
      * Load a bitmap either from a real file or using the {@link ContentResolver} of the current
      * {@link Context} (to read gallery images for example).
      */
-    private static Bitmap loadBitmap(Context context, String imagePath, BitmapFactory.Options options) throws IOException {
+    public static Bitmap loadBitmap(Context context, String imagePath, BitmapFactory.Options options) throws IOException {
         Bitmap sourceImage = null;
         if (!imagePath.startsWith("content://") && !imagePath.startsWith("file://")) {
             sourceImage = BitmapFactory.decodeFile(imagePath, options);

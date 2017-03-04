@@ -38,7 +38,7 @@ class RNPixelColorModule extends ReactContextBaseJavaModule {
             File file = ImageResizer.getFileFromUri(this.context, imageUrl);
             BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
             bitmapOptions.inJustDecodeBounds = true;
-            image = ImageResizer.loadBitmapFromFile(this.context, file.getPath(), bitmapOptions);
+            image = ImageResizer.loadBitmap(this.context, file.getPath(), bitmapOptions);
         } else {
             image = ImageResizer.loadBitmapFromBase64(path);
         }
