@@ -43,34 +43,34 @@ class RNPixelColorModule extends ReactContextBaseJavaModule {
           try {
             image = ImageResizer.loadBitmap(this.context, file.getPath(), bitmapOptions);
           } catch(IOException e){
-            callback.invoke("Error parsing bitmap. Error: " + e.getMessage());
+            callback.invoke("Error parsing bitmap. Error: " + e.getMessage(), null);
             return;
           }
         }
 
         if (image == null) {
-          callback.invoke("Could not create image from given path.");
+          callback.invoke("Could not create image from given path.", null);
           return;
         }
 
-        int x = options.getInt("x");
-        int y = options.getInt("y");
+        int x = (int) options.getDouble("x");
+        int y = (int) options.getDouble("y");
 
-        if (options.hasKey("width") && options.hasKey("height")) { //TODO check what this is for
+        if (options.hasKey("width") && options.hasKey("height")) {
           int scaledWidth = options.getInt("width");
           int scaledHeight = options.getInt("height");
 
-          float originalWidth = image.getWidth();
-          float originalHeight = image.getHeight();
+          int originalWidth = image.getWidth();
+          int originalHeight = image.getHeight();
 
-          x = x * ((int)originalWidth / scaledWidth);
-          y = y * ((int)originalHeight / scaledHeight);
+          x = x * (originalWidth / scaledWidth);
+          y = y * (originalHeight / scaledHeight);
 
         }
 
         int color = colorAtPixel(image, x, y);
 
-        callback.invoke(colorToHexString(color));
+        callback.invoke(null, colorToHexString(color));
     }
 
     private int colorAtPixel(Bitmap bitmap, int x, int y) {
