@@ -28,7 +28,7 @@ class RNPixelColorModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void getHex(String path, @Nullable ReadableMap options, final Callback callback) {
         Bitmap image;
-        if (path.startsWith("data:") || path.startsWith("file:") {
+        if (path.startsWith("data:") || path.startsWith("file:")) {
             Uri imageUrl = Uri.parse(path);
             File file = ImageResizer.getFileFromUri(this.context, imageUrl);
             BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
