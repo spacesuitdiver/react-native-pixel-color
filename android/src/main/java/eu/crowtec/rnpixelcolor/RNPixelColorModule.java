@@ -40,11 +40,11 @@ class RNPixelColorModule extends ReactContextBaseJavaModule {
         } else {
 
           try {
-              InputStream istr = reactContext.getAssets().open(path);
+              InputStream istr = this.context.getAssets().open(path);
               image = BitmapFactory.decodeStream(istr);
           } catch (IOException e) {
               // handle exception
-              Log.e(TAG, "Error loading Bitmap");
+              callback.invoke("Error parsing bitmap. Error: " + e.getMessage(), null);
           }
         }
 
