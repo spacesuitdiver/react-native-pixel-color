@@ -6,6 +6,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -36,15 +38,13 @@ class RNPixelColorModule extends ReactContextBaseJavaModule {
         if (path.startsWith("data:") || path.startsWith("file:")) {
           image = ImageResizer.loadBitmapFromBase64(path);
         } else {
-          Uri imageUrl = Uri.parse(path);
-          File file = ImageResizer.getFileFromUri(this.context, imageUrl);
-          BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
-          bitmapOptions.inJustDecodeBounds = true;
+
           try {
-            image = ImageResizer.loadBitmap(this.context, file.getPath(), bitmapOptions);
-          } catch(IOException e){
-            callback.invoke("Error parsing bitmap. Error: " + e.getMessage(), null);
-            return;
+              InputStream istr = reactContext.getAssets().open(path);
+              image = BitmapFactory.decodeStream(istr);
+          } catch (IOException e) {
+              // handle exception
+              Log.e(TAG, "Error loading Bitmap");
           }
         }
 
