@@ -45,6 +45,7 @@ class RNPixelColorModule extends ReactContextBaseJavaModule {
           } catch (IOException e) {
               // handle exception
               callback.invoke("Error parsing bitmap. Error: " + e.getMessage(), null);
+              return;
           }
         }
 
