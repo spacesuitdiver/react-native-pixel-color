@@ -21,6 +21,7 @@ import java.io.IOException;
 
 class RNPixelColorModule extends ReactContextBaseJavaModule {
     private Context context;
+    private Bitmap image;
 
     public RNPixelColorModule(ReactApplicationContext reactContext) {
         super(reactContext);
