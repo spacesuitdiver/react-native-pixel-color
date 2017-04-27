@@ -61,23 +61,8 @@ class RNPixelColorModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void getHex(String path, ReadableMap options, final Callback callback) {
-        Bitmap image;
-        if (path.startsWith("data:") || path.startsWith("file:")) {
-          image = ImageResizer.loadBitmapFromBase64(path);
-        } else {
-
-          try {
-              InputStream istr = this.context.getAssets().open(path);
-              image = BitmapFactory.decodeStream(istr);
-          } catch (IOException e) {
-              // handle exception
-              callback.invoke("Error parsing bitmap. Error: " + e.getMessage(), null);
-              return;
-          }
-        }
-
-        if (image == null) {
-          callback.invoke("Could not create image from given path.", null);
+        if (this.image == null) {
+          callback.invoke("not have image fo get hex", null);
           return;
         }
 
@@ -87,16 +72,26 @@ class RNPixelColorModule extends ReactContextBaseJavaModule {
         if (options.hasKey("width") && options.hasKey("height")) {
           int scaledWidth = options.getInt("width");
           int scaledHeight = options.getInt("height");
+        
+          int originalWidth = this.image.getWidth();
+          int originalHeight = this.image.getHeight();
 
-          int originalWidth = image.getWidth();
-          int originalHeight = image.getHeight();
+          if (originalWidth < scaledWidth) {
+            x = x * (scaledWidth / originalWidth);
+          } else {
+            x = x * (originalWidth / scaledWidth);
+          }
 
-          x = x * (originalWidth / scaledWidth);
-          y = y * (originalHeight / scaledHeight);
+          //validate event to scale image
+          if (originalHeight < scaledHeight) {
+            y = y * (scaledHeight / originalHeight);
+          } else {
+            y = y * (originalHeight / scaledHeight);
+          }
 
         }
 
-        int color = colorAtPixel(image, x, y);
+        int color = colorAtPixel(this.image, x, y);
 
         callback.invoke(null, colorToHexString(color));
     }
