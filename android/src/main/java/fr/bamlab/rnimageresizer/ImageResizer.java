@@ -228,7 +228,7 @@ public class ImageResizer {
      * png: 'data:image/png;base64,iVBORw0KGgoAA...'
      * jpg: 'data:image/jpeg;base64,/9j/4AAQSkZJ...'
      */
-    public static Bitmap loadBitmapFromBase64(String imagePath) {
+    public static Bitmap loadBitmapFromBase64(String imagePath, int originalRotation) {
         Bitmap sourceImage = null;
 
         // base64 image.  Convert to a bitmap.
@@ -243,6 +243,11 @@ public class ImageResizer {
             final String encodedImage = imagePath.substring(commaLocation+1);
             final byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT);
             sourceImage = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        }
+
+        //validate and set rotation of image
+        if (originalRotation != 0) {
+            sourceImage = ImageResizer.rotateImage(sourceImage, originalRotation);
         }
 
         return sourceImage;
@@ -261,7 +266,7 @@ public class ImageResizer {
             sourceImage = ImageResizer.loadBitmapFromFile(context, imagePath, newWidth, newHeight);
         }
         else {
-            sourceImage = ImageResizer.loadBitmapFromBase64(imagePath);
+            sourceImage = ImageResizer.loadBitmapFromBase64(imagePath, 0);
         }
 
         if (sourceImage == null){
