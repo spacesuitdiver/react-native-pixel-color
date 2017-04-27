@@ -33,6 +33,11 @@ class RNPixelColorModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void createImage(String path, int originalRotation, final Callback callback ) {
+
+    }
+
+    @ReactMethod
     public void getHex(String path, ReadableMap options, final Callback callback) {
         Bitmap image;
         if (path.startsWith("data:") || path.startsWith("file:")) {
