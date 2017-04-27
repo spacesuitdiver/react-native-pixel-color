@@ -34,7 +34,28 @@ class RNPixelColorModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void createImage(String path, int originalRotation, final Callback callback ) {
+        // Bitmap image;
+        if (path.startsWith("data:") || path.startsWith("file:")) {
+          this.image = ImageResizer.loadBitmapFromBase64(path, originalRotation);
+        } else {
 
+            try {
+                InputStream istr = this.context.getAssets().open(path);
+                this.image = BitmapFactory.decodeStream(istr);
+
+            } catch (IOException e) {
+                // handle exception
+                callback.invoke("Error parsing bitmap. Error: " + e.getMessage(), null);
+                return;
+            }
+        }
+
+        if (image == null) {
+            callback.invoke("Could not create image from given path.", null);
+            return;
+        }
+
+        callback.invoke(null, "load image success");
     }
 
     @ReactMethod
