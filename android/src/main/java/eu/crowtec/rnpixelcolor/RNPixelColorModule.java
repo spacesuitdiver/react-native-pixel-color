@@ -65,7 +65,7 @@ class RNPixelColorModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void getHex(String path, ReadableMap options, final Callback callback) {
+    public void getHex(ReadableMap options, final Callback callback) {
         if (this.image == null) {
           callback.invoke("not have image fo get hex", null);
           return;
