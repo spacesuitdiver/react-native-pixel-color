@@ -6,47 +6,61 @@
 
 @synthesize bridge = _bridge;
 
+@property (nonatomic, strong) UIImage *image;
+
 RCT_EXPORT_MODULE();
+
+RCT_EXPORT_METHOD(createImage:(NSString *)path
+                  originalRotation:(NSNumber *)originalRotation
+                  callback:(RCTResponseSenderBlock)callback)
+{
+    [_bridge.imageLoader loadImageWithURLRequest:[RCTConvert NSURLRequest:path] callback:^(NSError *error, UIImage *image) {
+    if (error || image == nil) { // if couldn't load from bridge create a new UIImage
+        if ([path hasPrefix:@"data:"] || [path hasPrefix:@"file:"]) {
+            NSURL *imageUrl = [[NSURL alloc] initWithString:path];
+            image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
+        } else {
+            image = [[UIImage alloc] initWithContentsOfFile:path];
+        }
+
+        if (image == nil) {
+            callback(@[@"Could not create image from given path.", @""]);
+            return;
+        }
+
+        self.image = image;
+    }
+}
 
 RCT_EXPORT_METHOD(getHex:(NSString *)path
                   options:(NSDictionary *)options
                   callback:(RCTResponseSenderBlock)callback)
 {
+    if (self.image == nil) {
+        callback(@[@"Not have image fo get hex.", @""]);
+        return;
+    }
 
-    [_bridge.imageLoader loadImageWithURLRequest:[RCTConvert NSURLRequest:path] callback:^(NSError *error, UIImage *image) {
-        if (error || image == nil) { // if couldn't load from bridge create a new UIImage
-            if ([path hasPrefix:@"data:"] || [path hasPrefix:@"file:"]) {
-                NSURL *imageUrl = [[NSURL alloc] initWithString:path];
-                image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
-            } else {
-                image = [[UIImage alloc] initWithContentsOfFile:path];
-            }
+    // [_bridge.imageLoader loadImageWithURLRequest:[RCTConvert NSURLRequest:path] callback:^(NSError *error, UIImage *image) {
+    NSInteger x = [RCTConvert NSInteger:options[@"x"]];
+    NSInteger y = [RCTConvert NSInteger:options[@"y"]];
+    if (options[@"width"] && options[@"height"]) {
+        NSInteger scaledWidth = [RCTConvert NSInteger:options[@"width"]];
+        NSInteger scaledHeight = [RCTConvert NSInteger:options[@"height"]];
+        float originalWidth = self.image.size.width;
+        float originalHeight = self.image.size.height;
 
-            if (image == nil) {
-                callback(@[@"Could not create image from given path.", @""]);
-                return;
-            }
-        }
+        x = x * (originalWidth / scaledWidth);
+        y = y * (originalHeight / scaledHeight);
 
-        NSInteger x = [RCTConvert NSInteger:options[@"x"]];
-        NSInteger y = [RCTConvert NSInteger:options[@"y"]];
-        if (options[@"width"] && options[@"height"]) {
-            NSInteger scaledWidth = [RCTConvert NSInteger:options[@"width"]];
-            NSInteger scaledHeight = [RCTConvert NSInteger:options[@"height"]];
-            float originalWidth = image.size.width;
-            float originalHeight = image.size.height;
+    }
 
-            x = x * (originalWidth / scaledWidth);
-            y = y * (originalHeight / scaledHeight);
+    CGPoint point = CGPointMake(x, y);
 
-        }
+    UIColor *pixelColor = [self.image colorAtPixel:point];
+    callback(@[[NSNull null], hexStringForColor(pixelColor)]);
 
-        CGPoint point = CGPointMake(x, y);
-
-        UIColor *pixelColor = [image colorAtPixel:point];
-        callback(@[[NSNull null], hexStringForColor(pixelColor)]);
-
-    }];
+    // }];
 }
 
 NSString * hexStringForColor( UIColor* color ) {
