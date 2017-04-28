@@ -37,7 +37,7 @@ class RNPixelColorModule extends ReactContextBaseJavaModule {
     public void createImage(String path, int originalRotation, final Callback callback ) {
         // Bitmap image;
         if (path.startsWith("data:") || path.startsWith("file:")) {
-          this.image = ImageResizer.loadBitmapFromBase64(path, originalRotation);
+          this.image = ImageResizer.loadBitmapFromBase64(path);
         } else {
 
             try {
@@ -54,6 +54,11 @@ class RNPixelColorModule extends ReactContextBaseJavaModule {
         if (image == null) {
             callback.invoke("Could not create image from given path.", null);
             return;
+        }
+
+        //validate and set rotation of image
+        if (originalRotation != 0) {
+            this.image = ImageResizer.rotateImage(this.image, originalRotation);
         }
 
         callback.invoke(null, "load image success");
