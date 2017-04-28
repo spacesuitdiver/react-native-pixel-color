@@ -1,7 +1,6 @@
 #include "RNPixelColor.h"
 #import "RCTImageLoader.h"
 #import "UIImage+ColorAtPixel.h"
-#import <React/RCTLog.h>
 
 @implementation RNPixelColor
 
@@ -12,9 +11,6 @@ RCT_EXPORT_MODULE();
 RCT_EXPORT_METHOD(createImage:(NSString *)path
                   callback:(RCTResponseSenderBlock)callback)
 {
-    RCTLogInfo(@"dddd ffff hhhh");
-    RCTLogInfo(@"dddd ffff hhhh");
-
     [_bridge.imageLoader loadImageWithURLRequest:[RCTConvert NSURLRequest:path] callback:^(NSError *error, UIImage *image) {
         if (error || image == nil) { // if couldn't load from bridge create a new UIImage
             if ([path hasPrefix:@"data:"] || [path hasPrefix:@"file:"]) {
