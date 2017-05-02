@@ -67,22 +67,22 @@ class RNPixelColorModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void getHex(ReadableMap options, final Callback callback) {
         if (this.image == null) {
-          callback.invoke("not have image fo get hex", null);
-          return;
+            callback.invoke("not have image fo get hex", null);
+            return;
         }
 
         int x = (int) options.getDouble("x");
         int y = (int) options.getDouble("y");
 
         if (options.hasKey("width") && options.hasKey("height")) {
-          int scaledWidth = options.getInt("width");
-          int scaledHeight = options.getInt("height");
-        
-          int originalWidth = this.image.getWidth();
-          int originalHeight = this.image.getHeight();
+            int scaledWidth = options.getInt("width");
+            int scaledHeight = options.getInt("height");
+            
+            int originalWidth = this.image.getWidth();
+            int originalHeight = this.image.getHeight();
 
-          x = x * (originalWidth / scaledWidth);
-          y = y * (originalHeight / scaledHeight);
+            x = x * (originalWidth / scaledWidth);
+            y = y * (originalHeight / scaledHeight);
 
         }
 
@@ -92,7 +92,7 @@ class RNPixelColorModule extends ReactContextBaseJavaModule {
     }
 
     private int colorAtPixel(Bitmap bitmap, int x, int y) {
-      return bitmap.getPixel(x, y);
+        return bitmap.getPixel(x, y);
     }
 
     private String colorToHexString(int color) {
