@@ -44,20 +44,8 @@ RCT_EXPORT_METHOD(getHex:(NSDictionary *)options
         float originalWidth = self.image.size.width;
         float originalHeight = self.image.size.height;
 
-        //validate event to scale image
-        if (originalWidth < scaledWidth) {
-            x = x * (scaledWidth / originalWidth);
-        } else {
-            x = x * (originalWidth / scaledWidth);
-        }
-
-        //validate event to scale image
-        if (originalHeight < scaledHeight) {
-            y = y * (scaledHeight / originalHeight);
-        } else {
-            y = y * (originalHeight / scaledHeight);
-        }
-
+        x = x * (originalWidth / scaledWidth);
+        y = y * (originalHeight / scaledHeight);
     }
 
     CGPoint point = CGPointMake(x, y);
