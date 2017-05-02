@@ -81,8 +81,8 @@ class RNPixelColorModule extends ReactContextBaseJavaModule {
             int originalWidth = this.image.getWidth();
             int originalHeight = this.image.getHeight();
 
-            x = x * (originalWidth / scaledWidth);
-            y = y * (originalHeight / scaledHeight);
+            x = (int)((double)x * ((double)originalWidth / (double)scaledWidth));
+            y = (int)((double)y * ((double)originalHeight / (double)scaledHeight));
 
         }
 
