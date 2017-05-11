@@ -1,6 +1,6 @@
 # React Native Pixel Color
 
-Returns the pixel color from a graphic at a given corrdinate.
+Returns the pixel color from a graphic at a given coordinate.
 
 ## Setup
 
