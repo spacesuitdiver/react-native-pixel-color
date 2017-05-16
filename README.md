@@ -1,3 +1,8 @@
+## Information
+This is a fork from LeBlaaanc's library (https://github.com/leblaaanc/react-native-pixel-color).  
+It also uses a sightly modified version of bamblab ImageResizer (https://github.com/bamlab/react-native-image-resizer).
+Added Android library and fixed some iOS stuff to make it work correctly.
+
 # React Native Pixel Color
 
 Returns the pixel color from a graphic at a given coordinate.
@@ -28,7 +33,7 @@ Note: on latest versions of React Native, you may have an error during the Gradl
 ```javascript
 import PixelColor from 'react-native-pixel-color';
 
-PixelColor.getHex(imageUriOrData, x, y).then((color) => {
+PixelColor.getHex(imageUriOrData, {x: x, y: y}).then((color) => {
   // #000000
 }).catch((err) => {
   // Oops, something went wrong. Check that the filename is correct and

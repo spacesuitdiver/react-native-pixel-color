@@ -27,7 +27,7 @@ import java.util.Date;
 /**
  * Provide methods to resize and rotate an image file.
  */
-class ImageResizer {
+public class ImageResizer {
 
     private final static String BASE64_PREFIX = "data:image/";
 
@@ -101,7 +101,7 @@ class ImageResizer {
      * Get {@link File} object for the given Android URI.<br>
      * Use content resolver to get real path if direct path doesn't return valid file.
      */
-    private static File getFileFromUri(Context context, Uri uri) {
+    public static File getFileFromUri(Context context, Uri uri) {
 
         // first try by direct path
         File file = new File(uri.getPath());
@@ -189,7 +189,7 @@ class ImageResizer {
      * Load a bitmap either from a real file or using the {@link ContentResolver} of the current
      * {@link Context} (to read gallery images for example).
      */
-    private static Bitmap loadBitmap(Context context, String imagePath, BitmapFactory.Options options) throws IOException {
+    public static Bitmap loadBitmap(Context context, String imagePath, BitmapFactory.Options options) throws IOException {
         Bitmap sourceImage = null;
         if (!imagePath.startsWith("content://") && !imagePath.startsWith("file://")) {
             sourceImage = BitmapFactory.decodeFile(imagePath, options);
@@ -207,7 +207,7 @@ class ImageResizer {
     /**
      * Loads the bitmap resource from the file specified in imagePath.
      */
-    private static Bitmap loadBitmapFromFile(Context context, String imagePath, int newWidth,
+    public static Bitmap loadBitmapFromFile(Context context, String imagePath, int newWidth,
                                              int newHeight) throws IOException  {
         // Decode the image bounds to find the size of the source image.
         BitmapFactory.Options options = new BitmapFactory.Options();
@@ -228,7 +228,7 @@ class ImageResizer {
      * png: 'data:image/png;base64,iVBORw0KGgoAA...'
      * jpg: 'data:image/jpeg;base64,/9j/4AAQSkZJ...'
      */
-    private static Bitmap loadBitmapFromBase64(String imagePath) {
+    public static Bitmap loadBitmapFromBase64(String imagePath) {
         Bitmap sourceImage = null;
 
         // base64 image.  Convert to a bitmap.

@@ -8,11 +8,9 @@
 
 RCT_EXPORT_MODULE();
 
-RCT_EXPORT_METHOD(getHex:(NSString *)path
-                  options:(NSDictionary *)options
+RCT_EXPORT_METHOD(createImage:(NSString *)path
                   callback:(RCTResponseSenderBlock)callback)
 {
-
     [_bridge.imageLoader loadImageWithURLRequest:[RCTConvert NSURLRequest:path] callback:^(NSError *error, UIImage *image) {
         if (error || image == nil) { // if couldn't load from bridge create a new UIImage
             if ([path hasPrefix:@"data:"] || [path hasPrefix:@"file:"]) {
@@ -27,26 +25,34 @@ RCT_EXPORT_METHOD(getHex:(NSString *)path
                 return;
             }
         }
- 
-        NSInteger x = [RCTConvert NSInteger:options[@"x"]];
-        NSInteger y = [RCTConvert NSInteger:options[@"y"]];
-        if (options[@"width"] && options[@"height"]) {
-            NSInteger scaledWidth = [RCTConvert NSInteger:options[@"width"]];
-            NSInteger scaledHeight = [RCTConvert NSInteger:options[@"height"]];
-            float originalWidth = image.size.width;
-            float originalHeight = image.size.height;
-            
-            x = x * (originalWidth / scaledWidth);
-            y = y * (originalHeight / scaledHeight);
-            
-        }
-        
-        CGPoint point = CGPointMake(x, y);
-        
-        UIColor *pixelColor = [image colorAtPixel:point];
-        callback(@[[NSNull null], hexStringForColor(pixelColor)]);
-     
+
+        self.image = image;
+        callback(@[[NSNull null], @"Create image success"]);
+
     }];
+    return;
+}
+
+RCT_EXPORT_METHOD(getHex:(NSDictionary *)options
+                  callback:(RCTResponseSenderBlock)callback)
+{
+    NSInteger x = [RCTConvert NSInteger:options[@"x"]];
+    NSInteger y = [RCTConvert NSInteger:options[@"y"]];
+    if (options[@"width"] && options[@"height"]) {
+        NSInteger scaledWidth = [RCTConvert NSInteger:options[@"width"]];
+        NSInteger scaledHeight = [RCTConvert NSInteger:options[@"height"]];
+        float originalWidth = self.image.size.width;
+        float originalHeight = self.image.size.height;
+
+        x = x * (originalWidth / scaledWidth);
+        y = y * (originalHeight / scaledHeight);
+    }
+
+    CGPoint point = CGPointMake(x, y);
+
+    UIColor *pixelColor = [self.image colorAtPixel:point];
+    callback(@[[NSNull null], hexStringForColor(pixelColor)]);
+
 }
 
 NSString * hexStringForColor( UIColor* color ) {
