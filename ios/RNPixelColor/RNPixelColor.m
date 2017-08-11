@@ -1,5 +1,5 @@
 #include "RNPixelColor.h"
-#import "RCTImageLoader.h"
+#import <React/RCTImageLoader.h>
 #import "UIImage+ColorAtPixel.h"
 
 @implementation RNPixelColor
