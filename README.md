@@ -28,7 +28,7 @@ Note: on latest versions of React Native, you may have an error during the Gradl
 ```javascript
 import PixelColor from 'react-native-pixel-color';
 
-PixelColor.getHex(imageUriOrData, x, y).then((color) => {
+PixelColor.getHex(imageUriOrData, { x, y }).then((color) => {
   // #000000
 }).catch((err) => {
   // Oops, something went wrong. Check that the filename is correct and
@@ -42,11 +42,11 @@ Examples are found in the [the `examples` folder](https://github.com/bamlab/reac
 
 ## API
 
-### `promise getHex(path, coords)`
+### `promise getHex(path, options)`
 
 The promise resolves with a string containing the uri of the new file.
 
 Option | Description
 ------ | -----------
 path | Path of image file, or a base64 encoded image string prefixed with 'data:image/imagetype' where `imagetype` is jpeg or png.
-coords | { x: int, y: int }
+options | { x: int, y: int }
