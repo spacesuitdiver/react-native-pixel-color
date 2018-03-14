@@ -353,6 +353,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		801EB44620599F6200A74905 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				F5F07849242B45FBB6460EEF /* libRNPixelColor.a */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		806279D21E131B2500924BF6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -396,6 +404,7 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* ColorPickerTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
+				801EB44620599F6200A74905 /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
