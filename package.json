@@ -21,6 +21,7 @@
   "peerDependencies": {
     "react-native": ">=v0.14.2"
   },
+  "homepage": "https://github.com/guilhermegarcz/react-native-pixel-color.git",
   "author": "Chris LeBlanc <spacesuitdiver@gmail.com> (http://spacesuitdiver.com)",
   "license": "MIT"
 }
