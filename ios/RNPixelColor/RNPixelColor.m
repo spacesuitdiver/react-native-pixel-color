@@ -51,6 +51,9 @@ RCT_EXPORT_METHOD(getHex:(NSString *)path
 
 NSString * hexStringForColor( UIColor* color ) {
     const CGFloat *components = CGColorGetComponents(color.CGColor);
+    if(!components){
+        return @"#000000";
+    }
     CGFloat r = components[0];
     CGFloat g = components[1];
     CGFloat b = components[2];
