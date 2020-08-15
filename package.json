@@ -1,10 +1,10 @@
 {
   "name": "react-native-pixel-color",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Returns the pixel color from a graphic at a given corrdinate.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/spacesuitdiver/react-native-pixel-color.git"
+    "url": "git+https://github.com/guilhermegarcz/react-native-pixel-color.git"
   },
   "keywords": [
     "react-native",
