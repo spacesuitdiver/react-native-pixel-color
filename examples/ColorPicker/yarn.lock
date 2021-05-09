@@ -3320,9 +3320,10 @@ react-native:
     xmldoc "^0.4.0"
     yargs "^6.4.0"
 
-react-native-pixel-color@latest:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/react-native-pixel-color/-/react-native-pixel-color-0.0.2.tgz#a41140015064a317f6ee4eba8f449fc03d09363e"
+react-native-pixel-color@spacesuitdiver/react-native-pixel-color:
+  version "0.0.5"
+  uid d3752a7098ca186c4b8928c8d0d55dde4f3796b7
+  resolved "https://codeload.github.com/spacesuitdiver/react-native-pixel-color/tar.gz/d3752a7098ca186c4b8928c8d0d55dde4f3796b7"
 
 react-proxy@^1.1.7:
   version "1.1.8"
@@ -3950,13 +3951,9 @@ type-is@~1.6.6:
     media-typer "0.3.0"
     mime-types "~2.1.13"
 
-ua-parser-js@^0.7.18:
-  version "0.7.20"
-  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.20.tgz#7527178b82f6a62a0f243d1f94fd30e3e3c21098"
-
-ua-parser-js@^0.7.9:
-  version "0.7.12"
-  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.12.tgz#04c81a99bdd5dc52263ea29d24c6bf8d4818a4bb"
+ua-parser-js@^0.7.18, ua-parser-js@^0.7.9:
+  version "0.7.28"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.28.tgz#8ba04e653f35ce210239c64661685bf9121dec31"
 
 uglify-js@^2.6.2:
   version "2.7.5"
