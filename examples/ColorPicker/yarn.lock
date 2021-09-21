@@ -3320,9 +3320,10 @@ react-native:
     xmldoc "^0.4.0"
     yargs "^6.4.0"
 
-react-native-pixel-color@latest:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/react-native-pixel-color/-/react-native-pixel-color-0.0.2.tgz#a41140015064a317f6ee4eba8f449fc03d09363e"
+react-native-pixel-color@spacesuitdiver/react-native-pixel-color:
+  version "0.0.5"
+  uid d3752a7098ca186c4b8928c8d0d55dde4f3796b7
+  resolved "https://codeload.github.com/spacesuitdiver/react-native-pixel-color/tar.gz/d3752a7098ca186c4b8928c8d0d55dde4f3796b7"
 
 react-proxy@^1.1.7:
   version "1.1.8"
@@ -3880,8 +3881,8 @@ time-stamp@^1.0.0:
   resolved "https://registry.yarnpkg.com/time-stamp/-/time-stamp-1.0.1.tgz#9f4bd23559c9365966f3302dbba2b07c6b99b151"
 
 tmpl@1.0.x:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/tmpl/-/tmpl-1.0.4.tgz#23640dd7b42d00433911140820e5cf440e521dd1"
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/tmpl/-/tmpl-1.0.5.tgz#8683e0b902bb9c20c4f726e3c0b69f36518c07cc"
 
 to-fast-properties@^1.0.1:
   version "1.0.2"
